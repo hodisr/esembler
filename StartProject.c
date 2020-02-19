@@ -1,15 +1,17 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #define LINE_SIZE 80  /* MAx of Charcters per one line*/
 
 
 /* ----  GLOBAL VERIABLE ---  */
 char ch[LINE_SIZE] ;
+char str1[LINE_SIZE];
 FILE *fd;
 int ch1;
 
 
-typedef struct Mila *ptr;
+typedef struct Milas *ptr;
 
 typedef struct Milas{
 /* A,R,E */
@@ -35,12 +37,11 @@ typedef struct Milas{
 	int s13;
 	int s14;
 	
+	char* str;
 	int Address;
-	ptr next; 
+	struct Milas *next; 
 }Mila ;
 
-
-typedef struct mila *p;
 
 
 /* ------ Printing ------   */
@@ -48,9 +49,14 @@ typedef struct mila *p;
 void PrintMila(Mila m)
 {		
 	printf("  OP-CODE   |    SOURCE   | DESTINATION |   ARE \n");
-	printf("  %d %d %d %d       %d %d %d %d       %d %d %d %d      %d %d %d\n",m.s14,m.s13,m.s12,m.s11,m.s10,m.s9,m.s8,m.s7,m.s6,m.s5,m.s4,m.s3,m.s2,m.s3,m.s0);	
+	printf("  %d %d %d %d       %d %d %d %d       %d %d %d %d      %d %d %d\n",m.s14,m.s13,m.s12,m.s11,m.s10,m.s9,m.s8,m.s7,m.s6,m.s5,m.s4,m.s3,m.s2,m.s1,m.s0);	
 }
 
+/*void Print(ptr m)
+{		
+	printf("  OP-CODE   |    SOURCE   | DESTINATION |   ARE \n");
+	printf("  %d %d %d %d       %d %d %d %d       %d %d %d %d      %d %d %d\n",m->s14,m->s13,m->s12,m->s11,m->s10,m->s9,m->s8,m->s7,m->s6,m->s5,m->s4,m->s3,m->s2,m->s1,m->s0);	
+}*/
 
 /* ------  INITIALIZE ------   */
 
@@ -121,16 +127,21 @@ void ReadFile()
 }
 
 
-/* Main Code */
+
+/*   ---------------------------            Main Code                   ------------------*/                                     
 int main()
 {
 	Mila mila;
+
 	initialize(&mila);
-	PrintMila(mila);
+	
+
 	Opcode(&mila);
 	ReadFile();
+
 	return 0;
 }
+
 
 /*  ---- Validation area  ---- */
 
